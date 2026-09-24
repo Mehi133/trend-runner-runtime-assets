@@ -5,7 +5,7 @@
 1. **Install `gh` standalone.** Ask the recipient first. Download the latest `gh_<version>_macOS_<arm64|amd64>.zip` (match `uname -m`) from https://github.com/cli/cli/releases/latest, check its sha256 against that release's `gh_<version>_checksums.txt`, unzip it, and put `bin/gh` in `~/.local/bin`. Done when `~/.local/bin/gh --version` prints.
 2. **Recipient signs in.** Stop and give the recipient this exact command to run: `~/.local/bin/gh auth login --hostname github.com --git-protocol ssh --skip-ssh-key --web`. The ssh protocol keeps `gh` from setting up a git credential helper. They must also have accepted the repo invite. Done when `gh api repos/Mehi133/trend-runner-local -q .full_name` prints the repo name.
 3. **Fetch the repo as a tarball.** `gh api repos/Mehi133/trend-runner-local/tarball > trend-runner.tar.gz`, then extract it into a fresh folder with `tar -xzf`.
-4. **Hand over to the repo.** From the extracted folder, run `sh bin/setup` and relay each consent question it asks to the recipient. It installs `uv` and Python, then the tool's own doctor asks about everything else. Done when `trend-runner doctor` reports every required item present.
+4. **Run setup in consent rounds.** From the extracted folder, run `sh bin/setup --check`: it prints one consent question per missing item. Put each question to the recipient, then run `sh bin/setup` with their answers piped in, one `y`/`n` per line in the same order. Setup copies itself to `~/.trend-runner/source` and may say more questions remain; repeat with `sh ~/.trend-runner/source/bin/setup --check`. Done when `--check` exits 0.
 
 ---
 
