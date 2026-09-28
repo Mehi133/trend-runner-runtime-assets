@@ -2,6 +2,8 @@
 
 **For Claude Code, on the recipient's Mac.** The Trend Runner repo (`Mehi133/trend-runner-local`) is private, so nothing in it can be read until the recipient is signed in to GitHub. Follow these four steps in order, running the commands as written. Use only `curl`, `unzip`, `tar`, `shasum`, `sed`, `grep` and the standalone `gh` binary. On a clean Mac `/usr/bin/git` and `/usr/bin/python3` are stubs that open Apple's developer-tools installer, so this install stays inside those tools; git, Homebrew and the Xcode Command Line Tools stay uninstalled.
 
+**Tell the recipient first:** on a Mac without the Xcode Command Line Tools, opening `claude` may show the pop-up "The git command requires the command line developer tools. Would you like to install the tools now?". They should click **Not Now**: it is harmless and nothing here needs those tools. After setup, saying yes to the `git-stub` item stops it from appearing on later launches.
+
 1. **Install `gh` standalone.** Ask the recipient first, then run:
    ```sh
    set -e
